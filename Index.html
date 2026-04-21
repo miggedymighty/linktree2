@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Typisch Mighty — MightyMac</title>
+<meta name="description" content="Typisch Mighty — überall streamen. MightyMac.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fafaf7;
+    --surface: #ffffff;
+    --text: #1a1a1a;
+    --muted: #6b6b6b;
+    --accent: #7c3aed;
+    --accent-soft: #f3efff;
+    --border: #eae7e0;
+    --shadow: 0 1px 2px rgba(20,20,20,0.04), 0 8px 24px rgba(20,20,20,0.06);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Space Grotesk', -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100%;
+  }
+
+  body {
+    background-image:
+      radial-gradient(1200px 600px at 50% -10%, rgba(124,58,237,0.08), transparent 60%),
+      linear-gradient(180deg, #fafaf7 0%, #f5f2ec 100%);
+  }
+
+  .wrap {
+    max-width: 440px;
+    margin: 0 auto;
+    padding: 48px 20px 60px;
+  }
+
+  .artist {
+    text-align: center;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 20px;
+  }
+
+  .cover-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    background: #eee;
+    margin-bottom: 28px;
+  }
+
+  .cover-wrap::after {
+    content: "";
+    position: absolute; inset: 0;
+    border-radius: 14px;
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,0.06);
+    pointer-events: none;
+  }
+
+  .cover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  h1 {
+    text-align: center;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 42px;
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    margin-bottom: 8px;
+  }
+
+  h1 .italic {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+
+  .tagline {
+    text-align: center;
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--muted);
+    margin-bottom: 32px;
+  }
+
+  .divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin: 0 0 18px;
+    color: var(--muted);
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+  }
+
+  .divider::before,
+  .divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .links { display: flex; flex-direction: column; gap: 10px; }
+
+  .link {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 15px 18px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    text-decoration: none;
+    color: var(--text);
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    letter-spacing: -0.01em;
+    transition: transform 0.15s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    position: relative;
+  }
+
+  .link:hover {
+    transform: translateY(-1px);
+    border-color: var(--accent);
+    background: var(--accent-soft);
+    box-shadow: 0 6px 18px rgba(124,58,237,0.12);
+  }
+
+  .link:active { transform: translateY(0); }
+
+  .link.shop {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+    box-shadow: 0 6px 20px rgba(124,58,237,0.28);
+  }
+
+  .link.shop .icon { color: #fff; }
+  .link.shop .arrow { color: rgba(255,255,255,0.8); }
+
+  .link.shop:hover {
+    background: #6d28d9;
+    border-color: #6d28d9;
+    box-shadow: 0 10px 26px rgba(124,58,237,0.38);
+  }
+
+  .link.shop:hover .arrow { color: #fff; }
+
+  .link .icon {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    display: grid;
+    place-items: center;
+    color: var(--accent);
+  }
+
+  .link .icon svg { width: 100%; height: 100%; }
+
+  .link .label { flex: 1; }
+
+  .link .arrow {
+    color: var(--muted);
+    font-size: 18px;
+    transition: transform 0.2s ease, color 0.2s ease;
+  }
+
+  .link:hover .arrow {
+    transform: translateX(3px);
+    color: var(--accent);
+  }
+
+  footer {
+    margin-top: 40px;
+    text-align: center;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    color: var(--muted);
+  }
+
+  footer a { color: var(--accent); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  @media (max-width: 380px) {
+    h1 { font-size: 36px; }
+    .wrap { padding: 32px 16px 40px; }
+  }
+</style>
+</head>
+<body>
+  <main class="wrap">
+    <div class="artist">MightyMac</div>
+
+    <div class="cover-wrap">
+      <img class="cover" src="cover.jpg" alt="MightyMac — Typisch Mighty">
+    </div>
+
+    <h1>Typisch <span class="italic">Mighty</span></h1>
+    <p class="tagline">— out now —</p>
+
+    <nav class="links" style="margin-bottom: 22px;">
+      <a class="link shop" href="https://mightyverse-2.myshopify.com/" target="_blank" rel="noopener">
+        <span class="icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        </span>
+        <span class="label">Shop · Mightyverse</span>
+        <span class="arrow">→</span>
+      </a>
+    </nav>
+
+    <div class="divider">Streame jetzt</div>
+
+    <nav class="links">
+      <a class="link" href="https://prf.hn/click/camref:1011ljRBZ/pubref:eyJwaWQiOjU0OTQsInVpZCI6NH0%3D/destination:https%3A%2F%2Fopen.spotify.com%2Falbum%2F7j8S3aNwMyn8dWikOEZrDa" target="_blank" rel="noopener">
+        <span class="icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.42 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+        </span>
+        <span class="label">Spotify</span>
+        <span class="arrow">→</span>
+      </a>
+
+      <a class="link" href="https://music.apple.com/us/album/typisch-mighty-single/1892296274?l=de&ls=1&at=11l9CJ&ct=promo5494" target="_blank" rel="noopener">
+        <span class="icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.997 6.124c0-.738-.065-1.47-.24-2.19-.317-1.31-1.062-2.31-2.18-3.043C21.003.517 20.373.285 19.7.164c-.517-.093-1.038-.135-1.564-.15-.04-.003-.083-.01-.124-.014H5.988c-.152.01-.303.017-.455.026C4.786.07 4.043.15 3.33.394 1.96.87.94 1.76.35 3.1.15 3.548.06 4.02.02 4.51c-.015.196-.016.395-.02.593L0 17.91c.005.195.006.39.02.586.04.502.1 1 .22 1.51.3 1.21.965 2.18 1.92 3.04l.54.454c.25.18.52.34.8.49.83.44 1.72.69 2.66.75.04 0 .09.01.13.01h12.014c.07 0 .143-.01.214-.014.42-.03.85-.05 1.27-.16.68-.18 1.3-.47 1.85-.88.25-.19.49-.39.72-.6 1.02-.92 1.7-2.03 1.96-3.35.11-.56.16-1.14.16-1.71V6.124zM16.99 8.11v-.08c.26-.03.5-.05.75-.08.52-.07 1.03-.14 1.55-.22.18-.02.36-.05.54-.08.01.06.02.09.02.13v5.04c0 .03 0 .06-.01.09-.01.23-.02.45-.08.68-.12.44-.35.82-.71 1.09-.27.2-.58.33-.92.4-.36.07-.73.1-1.1.05-.65-.08-1.2-.32-1.6-.83-.35-.46-.45-.99-.26-1.55.18-.57.55-.97 1.13-1.16.32-.11.66-.16 1-.22.27-.05.55-.08.82-.14.28-.07.51-.22.63-.49.04-.09.06-.19.06-.28l.001-2.13c0-.06 0-.12-.02-.18-.02-.15-.09-.22-.24-.22-.14 0-.27.02-.4.04l-3.74.52c-.08.01-.15.03-.23.05-.13.04-.2.13-.22.27-.01.07-.01.14-.01.22l.01 5.42c0 .19-.01.38-.05.56-.11.52-.38.93-.83 1.22-.28.18-.58.29-.91.36-.36.07-.72.1-1.08.05-.63-.08-1.16-.32-1.55-.81-.34-.44-.45-.95-.29-1.5.13-.48.44-.82.87-1.04.3-.15.61-.22.93-.29.37-.08.74-.13 1.11-.2.11-.02.22-.06.31-.13.14-.1.22-.25.23-.43 0-.05.01-.1.01-.16v-6.27c0-.1.01-.21.03-.31.03-.18.15-.28.32-.32.21-.04.41-.06.62-.09.48-.07.96-.13 1.44-.19.54-.07 1.07-.14 1.61-.21.49-.07.99-.13 1.48-.2l1.34-.18c.03 0 .07-.02.11-.02.15 0 .23.07.25.23v.17c-.01 1.03-.01 2.07-.01 3.11 0 .12-.01.23-.04.34-.06.15-.17.24-.33.27-.17.03-.33.05-.5.07l-1.43.18c-.36.04-.72.1-1.08.15-.04 0-.08.02-.12.03v.08z"/></svg>
+        </span>
+        <span class="label">Apple Music</span>
+        <span class="arrow">→</span>
+      </a>
+
+      <a class="link" href="https://music.apple.com/us/album/typisch-mighty-single/1892296274?l=de&ls=1&app=itunes&at=11l9CJ&ct=promo5494" target="_blank" rel="noopener">
+        <span class="icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.5 15.75c0 .414-.336.75-.75.75-2.485 0-4.5-2.015-4.5-4.5V6.75a.75.75 0 011.5 0V12c0 1.657 1.343 3 3 3 .414 0 .75.336.75.75z"/></svg>
+        </span>
+        <span class="label">iTunes</span>
+        <span class="arrow">→</span>
+      </a>
+
+      <a class="link" href="https://music.amazon.de/albums/B0GWQBJBB7?marketplaceId=A1PA6795UKMFR9&musicTerritory=DE&ref=dm_sh_WmtMRDrIFHJu3xVPXDwhhTjdy&tag=recjet-21" target="_blank" rel="noopener">
+        <span class="icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.42 17.12c-2.1 1.55-5.14 2.37-7.76 2.37-3.67 0-6.98-1.36-9.48-3.62-.2-.18-.02-.42.22-.28 2.7 1.57 6.04 2.51 9.49 2.51 2.33 0 4.88-.48 7.23-1.48.36-.15.66.23.3.5zM19.29 16.13c-.27-.34-1.78-.16-2.46-.08-.21.03-.24-.16-.05-.29 1.2-.85 3.18-.6 3.41-.32.23.28-.06 2.25-1.2 3.19-.17.14-.34.07-.26-.13.26-.63.84-2.03.56-2.37zM16.94 8.54c0-.84.02-1.54-.4-2.3-.34-.62-.88-1-1.48-1-.8 0-1.66.61-1.87 1.57-.04.21-.06.42-.07.63v.9c0 1.14.05 2.16.65 3.09.47.75 1.23 1.19 2.07 1.19.51 0 1.03-.19 1.47-.55.31-.26.52-.56.56-.69.37-1.25.09-1.74.07-2.84zm-2.27-2.69c.88 0 1.36.64 1.36 1.65v.88c-.69.04-1.75.12-2.4.43v-.96c0-.87.32-1.99 1.04-1.99zM21.1 14.92c-.72.51-1.62.95-2.59 1.28-1.12.38-2.37.57-3.59.57-3.55 0-6.77-1.31-9.2-3.49-.2-.18-.02-.43.22-.29 2.63 1.53 5.88 2.45 9.24 2.45 2.37 0 4.97-.49 7.37-1.51.36-.15.67.24.3.49l.25.5zM9.5 11.35c-1.59 0-3.1-.61-3.1-1.65 0-.49.2-.81.56-1.09.07-.06.16-.03.2.04l.52.93c.02.04.02.09-.01.13-.1.15-.17.32-.17.49 0 .5.81 1.02 2 1.02 1.05 0 1.94-.58 1.94-1.47 0-.68-.33-1.01-1.86-1.23-1.58-.22-2.81-.86-2.81-2.53 0-1.52 1.48-2.45 2.9-2.45 1.45 0 2.51.36 3.14 1.13.07.08.01.2-.1.2h-.95c-.04 0-.09-.02-.12-.05-.4-.42-1.05-.61-1.87-.61-1.08 0-1.73.56-1.73 1.32 0 .71.37 1 1.95 1.23 1.77.26 2.72.87 2.72 2.48 0 1.67-1.49 2.11-2.21 2.11z"/></svg>
+        </span>
+        <span class="label">Amazon Music</span>
+        <span class="arrow">→</span>
+      </a>
+
+      <a class="link" href="https://www.deezer.com/de/album/958495041" target="_blank" rel="noopener">
+        <span class="icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.81 4.16h5.19v3.03h-5.19V4.16zm0 4.78h5.19v3.03h-5.19V8.94zm0 4.78h5.19v3.03h-5.19v-3.03zm0 4.78h5.19v3.03h-5.19v-3.03zM12.54 8.94h5.19v3.03h-5.19V8.94zm0 4.78h5.19v3.03h-5.19v-3.03zm0 4.78h5.19v3.03h-5.19v-3.03zM6.27 13.72h5.19v3.03H6.27v-3.03zm0 4.78h5.19v3.03H6.27v-3.03zM0 18.5h5.19v3.03H0V18.5z"/></svg>
+        </span>
+        <span class="label">Deezer</span>
+        <span class="arrow">→</span>
+      </a>
+
+      <a class="link" href="https://open.qobuz.com/album/tyvpw8xbgy9rj" target="_blank" rel="noopener">
+        <span class="icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M17 17l3 3" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+        </span>
+        <span class="label">Qobuz</span>
+        <span class="arrow">→</span>
+      </a>
+
+      <a class="link" href="https://tidal.com/album/514748281/track/514748282" target="_blank" rel="noopener">
+        <span class="icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.012 3.992L8.008 7.996 4.004 3.992 0 7.996 4.004 12l4.004-4.004L12.012 12l-4.004 4.004 4.004 4.004 4.004-4.004L12.012 12l4.004-4.004L12.012 3.992zM16.016 7.996L20.02 3.992 24.024 7.996 20.02 12l-4.004-4.004z"/></svg>
+        </span>
+        <span class="label">Tidal</span>
+        <span class="arrow">→</span>
+      </a>
+
+      <a class="link" href="https://music.youtube.com/watch?v=Vf5fpeKbQyU&si=Spf-jI-6-WFL_1CZ" target="_blank" rel="noopener">
+        <span class="icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.376 0 0 5.376 0 12s5.376 12 12 12 12-5.376 12-12S18.624 0 12 0zm0 4.8A7.2 7.2 0 114.8 12 7.208 7.208 0 0112 4.8zm0 1.44A5.76 5.76 0 1017.76 12 5.767 5.767 0 0012 6.24zm-1.44 2.88l4.8 2.88-4.8 2.88V9.12z"/></svg>
+        </span>
+        <span class="label">YouTube Music</span>
+        <span class="arrow">→</span>
+      </a>
+
+    </nav>
+
+    <footer>
+      © <span id="y"></span> MightyMac
+    </footer>
+  </main>
+
+<script>
+  document.getElementById('y').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
